@@ -28,8 +28,18 @@ jobs:
       - name: Build Debug APK
         run: ./gradlew assembleDebug --no-daemon
 
+      - name: Find and list APKs
+        run: |
+          echo "=== Searching for APK files ==="
+          find . -name "*.apk" -type f
+          echo "=== Done ==="
+
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: LocationSpoofer-debug-apk
-          path: app/build/outputs/apk/debug/*.apk
+          path: |
+            **/build/outputs/apk/debug/*.apk
+            **/build/outputs/apk/release/*.apk
+          if-no-files-found: warn
+          
