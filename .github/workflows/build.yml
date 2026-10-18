@@ -39,7 +39,6 @@ jobs:
         with:
           name: LocationSpoofer-debug-apk
           path: |
-            **/build/outputs/apk/debug/*.apk
-            **/build/outputs/apk/release/*.apk
-          if-no-files-found: warn
+                  **/build/outputs/apk/**/*.apk
+          if-no-files-found: error
           
